@@ -38,7 +38,7 @@ def logout_user(request):
 @api_view(['POST'])
 def send_data(request):
     Config = ConfigParser.ConfigParser()
-    Config.read("/workspace/send_data_server_and_customer_cfg/clientes_dir.ini")
+    Config.read("/workspace/send_data_server/ConfigFile.ini")
     username = request.user.username
     d_entrada = Config.get("clientes",username)
     ip = Config.get("Mongo","ip")
