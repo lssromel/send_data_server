@@ -1,0 +1,27 @@
+# Admin
+
+user: romel
+pass: plataforma
+
+# Customer
+
+user rentin
+pass colombia
+
+
+create docker image
+sudo docker build -f Dockerfile -t analytics_app .
+
+lanzamiento del servidor desde docker
+sudo docker run -t -i -p 5000:50lytics_app python analytics-app/manage.py runserver 0.0.0.0:5000
+
+
+actualizacion de la imagen con los archivos recibidos del servidor en el contenedor
+                     container id
+docker commit  0302a5798c5e analytics_app
+
+
+python -c 'import fun_containers; fun_containers.clean_insert("renting","viajes")'
+
+
+
