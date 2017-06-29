@@ -10,7 +10,7 @@ import time
 
 def handle_uploaded_file(f,name):
     Config = ConfigParser.ConfigParser()
-    Config.read("/workspace/send_data_server/clientes_dir.ini")
+    Config.read("/workspace/send_data_server/ConfigFile.ini")
     tmp = Config.get("tmp_dir","directorio")
 
     ruta = tmp+name
