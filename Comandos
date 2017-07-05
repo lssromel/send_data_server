@@ -13,8 +13,7 @@ create docker image
 sudo docker build -f Dockerfile -t send_data_server .
 
 lanzamiento del servidor desde docker
-sudo docker run -t -i -p 5000:5000 send_data_server python /workspace/send_data_server/manage.py runserver 0.0.0.0:5000
-
+sudo docker run --name "send_container" -t -i -p 5000:5000 send_data_server  python /workspace/send_data_server/manage.py runserver 0.0.0.0:5000
 
 
 actualizacion de la imagen con los archivos recibidos del servidor en el contenedor
