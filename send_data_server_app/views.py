@@ -61,7 +61,7 @@ def send_data(request):
         	os.remove(ruta)
     	    if os.path.isfile(ruta[:-4]):
         	os.remove(ruta[:-4])
-	    urllib2.urlopen("http://127.0.0.1:5005/inicio_tarea/")
+	    urllib2.urlopen("http://192.168.0.106:5005/inicio_tarea/")
 	    return HttpResponse("Archivo escrito en la base de Datos")
             
 
