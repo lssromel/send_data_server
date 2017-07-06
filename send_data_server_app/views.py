@@ -61,8 +61,9 @@ def send_data(request):
         	os.remove(ruta)
     	    if os.path.isfile(ruta[:-4]):
         	os.remove(ruta[:-4])
+	    urllib2.urlopen("http://127.0.0.1:5005/inicio_tarea/")
 	    return HttpResponse("Archivo escrito en la base de Datos")
-            urllib2.urlopen("http://127.0.0.1:5005/inicio_tarea/")
+            
 
     else:
 	return HttpResponse("Los md5 no coinciden")
