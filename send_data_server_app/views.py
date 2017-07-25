@@ -52,9 +52,9 @@ def send_data(request):
 
         myfile = File(archivo)
         ruta = handle_uploaded_file(myfile,archivo.name,tmp_dir)
-	HttpResponse("Archivo Cargado en el servidor")
+	return HttpResponse("Archivo Cargado en el servidor")
     
     else:
-	HttpResponse("Los MD5 no coinciden, reintente enviar el archivo")
+	return HttpResponse("Los MD5 no coinciden, reintente enviar el archivo")
 
 
