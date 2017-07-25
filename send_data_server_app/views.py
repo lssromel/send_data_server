@@ -36,31 +36,25 @@ def logout_user(request):
 @login_required
 @api_view(['POST'])
 def send_data(request):
-    Config = ConfigParser.ConfigParser()
-    Config.read("/workspace/send_data_server/ConfigFile.ini")
+
     username = request.user.username
-    d_entrada = Config.get("clientes",username)
-    ip = Config.get("Mongo","ip")
-    port = Config.get("Mongo","port")
     archivo = request.data['file']
     name = request.data['name']
-    tmp= archivo
     MD5= request.data["MD5"] 
+
+    Config = ConfigParser.ConfigParser()
+    Config.read("/workspace/send_data_server/ConfigFile.ini")
+    tmp_dir = Config.get("tmp_dir",username)
+    
+    tmp = archivo
+
     if MD5_Check(tmp,MD5):
+
         myfile = File(archivo)
-        ruta = handle_uploaded_file(myfile,archivo.name)
-	code,df=limpieza(d_entrada,ruta,name)
-	if code ==0:
-	    return HttpResponse(df)
-	print "preprocessing file OK"
-	if insert_send_data(ip,port,name,username,df):
-    	    if os.path.isfile(ruta):
-        	os.remove(ruta)
-    	    if os.path.isfile(ruta[:-4]):
-        	os.remove(ruta[:-4])
-	    
-	    return HttpResponse("File written in the database")
+        ruta = handle_uploaded_file(myfile,archivo.name,tmp_dir)
+	HttpResponse("Archivo Cargado en el servidor")
+    
     else:
-	return HttpResponse("Md5 are not the same")
+	HttpResponse("Los MD5 no coinciden, reintente enviar el archivo")
 
 
